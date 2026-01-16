@@ -12,8 +12,9 @@ let validationForms = function(){
         {
             if(!inputs[i].classList.contains('error') && inputs[i].value === '')
             {
+        
                 inputs[i].classList.remove('spacing-bottom')
-                
+
                 if(contexts[c].contains(inputs[i]))
                 {
                     if(child.className == 'context-error')
@@ -51,18 +52,16 @@ for(let i = 0; i < inputs.length; i++){
 
     inputs[i].addEventListener('keydown', function()
     {
-        if(inputs[i].classList.contains('error'))
-        {
-            for(let c = 0; c < contexts.length; c++)
-            {
-                let child = contexts[c].lastElementChild
-                inputs[i].classList.remove('error')
-                inputs[i].classList.add('spacing-bottom')
-                child.style.display = 'none'
-            }
-        }
+        let contextError = document.querySelectorAll('.contexts')
+        contextError = contextError[i].lastElementChild
 
-    })
+        if(inputs[i].classList.contains('error'))
+        {   
+            contextError.style.display = 'none'
+            inputs[i].classList.remove('error')
+            inputs[i].classList.add('spacing-bottom')
+        }
+    })   
 }
 
 submit.addEventListener('click', validationForms)
